@@ -1,0 +1,54 @@
+2020-06-28 17:19:47.707 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter Line:40  - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field aliPayService in com.zy.minicodepay.modules.alipay.controller.AliPayController required a bean of type 'com.zy.minicodepay.modules.alipay.service.IAliPayService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.zy.minicodepay.modules.alipay.service.IAliPayService' in your configuration.
+
+2020-06-28 17:25:39.921 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter Line:40  - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field aliPayService in com.zy.minicodepay.modules.alipay.controller.AliPayController required a bean of type 'com.zy.minicodepay.modules.alipay.service.IAliPayService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.zy.minicodepay.modules.alipay.service.IAliPayService' in your configuration.
+
+2020-06-28 17:26:51.273 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter Line:40  - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field aliPayService in com.zy.minicodepay.modules.alipay.controller.AliPayController required a bean of type 'com.zy.minicodepay.modules.alipay.service.IAliPayService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.zy.minicodepay.modules.alipay.service.IAliPayService' in your configuration.
+
