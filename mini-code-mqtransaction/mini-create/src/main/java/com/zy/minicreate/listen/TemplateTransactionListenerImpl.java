@@ -1,4 +1,3 @@
-/*
 package com.zy.minicreate.listen;
 
 import com.zy.minicreate.enums.ProducerTranStepEnum;
@@ -16,12 +15,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-*/
 /**
  * date:  2020-07-01 17:21
  * 基于注解的监听
- * @author zhengyao
- *//*
+ * @author zhengyao*/
+
 
 @Slf4j
 @Service
@@ -95,4 +93,3 @@ public class TemplateTransactionListenerImpl implements RocketMQLocalTransaction
         return msgStateRecord;
     }
 }
-*/

@@ -11,7 +11,10 @@ import org.apache.rocketmq.client.producer.TransactionMQProducer;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.MessagingException;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,8 +31,8 @@ import java.util.UUID;
 @Slf4j
 public class TransMsgServiceImpl implements ITransMsgService {
 
-    /*@Resource
-    private RocketMQTemplate rocketMQTemplate;*/
+    @Resource
+    private RocketMQTemplate rocketMQTemplate;
 
     @Autowired
     private MsgConfigProperties msgConfigProperties;
@@ -64,7 +67,7 @@ public class TransMsgServiceImpl implements ITransMsgService {
     }
 
 
-    /*public void templateTransMsg2(String transMsg) {
+    public void templateTransMsg2(String transMsg) {
         try {
             long timeStamp = System.currentTimeMillis();
             String txGroupProducer = "Trans-Msg-Topic";
@@ -94,5 +97,5 @@ public class TransMsgServiceImpl implements ITransMsgService {
         } catch (MessagingException e) {
             log.info("MessagingException:{}", e);
         }
-    }*/
+    }
 }
