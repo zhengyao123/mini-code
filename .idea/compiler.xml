@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="gupaoedu-vip-mybatis-standalone" />
+        <module name="mini-code-pay" />
+        <module name="mini-consumer" />
+        <module name="mini-create" />
+        <module name="server1 (1)" />
+        <module name="server2 (1)" />
+        <module name="transaction (1)" />
+        <module name="txmanager (1)" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo" target="1.8" />
+      <module name="gupaoedu-vip-mybatis-standalone" target="7" />
+      <module name="mini-code-pay" target="1.8" />
+      <module name="mini-code-transaction" target="1.8" />
+      <module name="mini-consumer" target="1.8" />
+      <module name="mini-create" target="1.8" />
+      <module name="mq-transaction" target="1.8" />
+      <module name="netty-manager" target="1.5" />
+      <module name="pc-netty" target="1.8" />
+      <module name="pc-transaction" target="1.8" />
+      <module name="redis-transaction" target="1.8" />
+      <module name="server-one" target="1.8" />
+      <module name="server-two" target="1.8" />
+      <module name="server1" target="1.8" />
+      <module name="server1 (1)" target="1.8" />
+      <module name="server2" target="1.8" />
+      <module name="server2 (1)" target="1.8" />
+      <module name="test-transaction" target="1.8" />
+      <module name="test-transaction (1)" target="1.8" />
+      <module name="transaction" target="1.8" />
+      <module name="transaction (1)" target="1.8" />
+      <module name="txmanager" target="1.5" />
+      <module name="txmanager (1)" target="1.5" />
+      <module name="zk-transaction" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

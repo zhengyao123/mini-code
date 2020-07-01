@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/mini-consumer/mini-consumer.iml" filepath="$PROJECT_DIR$/mini-consumer/mini-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-create/mini-create.iml" filepath="$PROJECT_DIR$/mini-create/mini-create.iml" />
+    </modules>
+  </component>
+</project>

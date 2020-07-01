@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/gupaoedu-vip-mybatis-standalone/gupaoedu-vip-mybatis-standalone.iml" filepath="$PROJECT_DIR$/gupaoedu-vip-mybatis-standalone/gupaoedu-vip-mybatis-standalone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mini-code.iml" filepath="$PROJECT_DIR$/.idea/mini-code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-code-leetcode/mini-code-leetcode.iml" filepath="$PROJECT_DIR$/mini-code-leetcode/mini-code-leetcode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-code-pay/mini-code-pay.iml" filepath="$PROJECT_DIR$/mini-code-pay/mini-code-pay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-code-mqtransaction/mini-consumer/mini-consumer.iml" filepath="$PROJECT_DIR$/mini-code-mqtransaction/mini-consumer/mini-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-code-mqtransaction/mini-create/mini-create.iml" filepath="$PROJECT_DIR$/mini-code-mqtransaction/mini-create/mini-create.iml" />
+      <module fileurl="file://$PROJECT_DIR$/luban-transaction/server1/server1 (1).iml" filepath="$PROJECT_DIR$/luban-transaction/server1/server1 (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/luban-transaction/server2/server2 (1).iml" filepath="$PROJECT_DIR$/luban-transaction/server2/server2 (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/luban-transaction/test-transaction.iml" filepath="$PROJECT_DIR$/luban-transaction/test-transaction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/luban-transaction/transaction/transaction (1).iml" filepath="$PROJECT_DIR$/luban-transaction/transaction/transaction (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/luban-transaction/txmanager/txmanager (1).iml" filepath="$PROJECT_DIR$/luban-transaction/txmanager/txmanager (1).iml" />
+    </modules>
+  </component>
+</project>

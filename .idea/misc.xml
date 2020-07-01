@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/mini-code-pay/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-transaction/server-one/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-transaction/mq-transaction/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-transaction/redis-transaction/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-transaction/server-two/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-transaction/zk-transaction/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-transaction/pc-transaction/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-transaction/pc-netty/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-transaction/netty-manager/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-transaction/server1/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-transaction/server2/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-transaction/transaction/pom.xml" />
+        <option value="$PROJECT_DIR$/luban-transaction/pom.xml" />
+        <option value="$PROJECT_DIR$/luban-transaction/txmanager/pom.xml" />
+        <option value="$PROJECT_DIR$/luban-transaction/transaction/pom.xml" />
+        <option value="$PROJECT_DIR$/luban-transaction/server2/pom.xml" />
+        <option value="$PROJECT_DIR$/luban-transaction/server1/pom.xml" />
+        <option value="$PROJECT_DIR$/gupaoedu-vip-mybatis-standalone/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-mqtransaction/mini-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/mini-code-mqtransaction/mini-create/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/mini-code-leetcode/out" />
+  </component>
+</project>

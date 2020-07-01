@@ -1,0 +1,32 @@
+server:
+  port: 9090
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zy?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+  rocketmq:
+    nameServer: 127.0.0.1:9876
+    trans-topic: TRANS-MQ-Topic
+    producer:
+      trans-group: TRANS-MQ-GROUP
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: TRANS-MQ-GROUP3
+  swagger:
+    title: 事务消息API-Swagger
+    description: 事务消息API Rest APIs
+    contact-name: 事务消息开发
+    license-url: http://www.apache.org/licenses/LICENSE-2.0.html
+    version: 1.0.0
+    base-package: com.zy.minicreate.controller
+mybatis:
+  type-aliases-package: com.zy.minicreate.model
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration.map-underscore-to-camel-case: true
+logging:
+  level:
+    com.zy.minicreate: info

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/mini-code-transaction/pc-transaction/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mini-code-transaction/pc-transaction/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/luban-transaction/server2/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/luban-transaction/server2/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/luban-transaction/server1/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/luban-transaction/server1/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/luban-transaction/transaction/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/luban-transaction/txmanager/src/main/java" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
