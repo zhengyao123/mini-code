@@ -10,6 +10,7 @@
     <file url="file://$PROJECT_DIR$/luban-transaction/server2" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/luban-transaction/transaction" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mini-code-mqtransaction/mini-consumer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mini-code-mqtransaction/mini-consumer/src/main/resources/application.yml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/mini-code-mqtransaction/mini-create" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mini-code-pay" charset="UTF-8" />
   </component>
