@@ -1,0 +1,13 @@
+package com.zy.minicoderedis;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class MiniCodeRedisApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(MiniCodeRedisApplication.class, args);
+    }
+
+}

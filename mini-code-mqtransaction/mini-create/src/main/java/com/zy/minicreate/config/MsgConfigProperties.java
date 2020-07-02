@@ -6,11 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-/**
- * @description:
- * @author: xiaoxu.nie
- * @date: 2018-12-04 14:15
- */
+
 @Setter
 @Getter
 @Component
