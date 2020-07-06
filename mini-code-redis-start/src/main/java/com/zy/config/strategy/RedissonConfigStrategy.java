@@ -1,19 +1,19 @@
-package com.zy.strategy;
+package com.zy.config.strategy;
 
 import com.zy.config.RedissonProperties;
 import org.redisson.config.Config;
 
 /**
- * date:  2020-07-06 09:59
- *
- * @author zhengyao
+ * @author snowalker
+ * @date 2018/7/12
+ * @desc Redisson配置构建接口
  */
 public interface RedissonConfigStrategy {
 
     /**
-     * 通过不同的redis配置 策略创建对应config
+     * 根据不同的Redis配置策略创建对应的Config
      * @param redissonProperties
-     * @return
+     * @return Config
      */
     Config createRedissonConfig(RedissonProperties redissonProperties);
 }

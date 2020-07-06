@@ -1,14 +1,15 @@
-package com.zy.strategy;
+package com.zy.config.strategy;
 
 import com.zy.config.RedissonProperties;
 import org.redisson.config.Config;
 
 /**
- * date:  2020-07-06 13:54
+ * @author snowalker
+ * @date 2018/7/12
  * @desc Redisson配置上下文，产出真正的Redisson的Config
- * @author zhengyao
  */
 public class RedissonConfigContext {
+
     private RedissonConfigStrategy redissonConfigStrategy = null;
 
     public RedissonConfigContext(RedissonConfigStrategy _redissonConfigStrategy) {

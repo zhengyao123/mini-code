@@ -1,26 +1,24 @@
-package com.zy.strategy;
+package com.zy.config.strategy;
+
 
 import com.zy.config.RedissonProperties;
 import com.zy.constant.GlobalConstant;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.config.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * date:  2020-07-06 10:16
- *
- * @author zhengyao
+ * @author snowalker
+ * @date 2018/7/12
+ * @desc 单机方式Redisson配置
  */
-@Slf4j
 public class StandaloneRedissonConfigStrategyImpl implements RedissonConfigStrategy {
-    /**
-     * 单机模式
-     * @param redissonProperties
-     * @return
-     */
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(StandaloneRedissonConfigStrategyImpl.class);
+
     @Override
     public Config createRedissonConfig(RedissonProperties redissonProperties) {
-
         Config config = new Config();
         try {
             String address = redissonProperties.getAddress();
@@ -32,9 +30,9 @@ public class StandaloneRedissonConfigStrategyImpl implements RedissonConfigStrat
             if (StringUtils.isNotBlank(password)) {
                 config.useSingleServer().setPassword(password);
             }
-            log.info("初始化[standalone]方式Config,redisAddress:" + address);
+            LOGGER.info("初始化[standalone]方式Config,redisAddress:" + address);
         } catch (Exception e) {
-            log.error("standalone Redisson init error", e);
+            LOGGER.error("standalone Redisson init error", e);
             e.printStackTrace();
         }
         return config;

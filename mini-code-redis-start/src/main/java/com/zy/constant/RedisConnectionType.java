@@ -1,16 +1,16 @@
 package com.zy.constant;
 
 /**
- * date:  2020-07-06 13:52
- *
- * @author zhengyao
+ * @author snowalker
+ * @date 2018/7/11
  * @desc Redis连接方式
- *           包含:standalone-单节点部署方式
- *               sentinel-哨兵部署方式
- *               cluster-集群方式
- *               masterslave-主从部署方式
+ *          包含:standalone-单节点部署方式
+ *              sentinel-哨兵部署方式
+ *              cluster-集群方式
+ *              masterslave-主从部署方式
  */
-public enum  RedisConnectionType {
+public enum RedisConnectionType {
+
     STANDALONE("standalone", "单节点部署方式"),
     SENTINEL("sentinel", "哨兵部署方式"),
     CLUSTER("cluster", "集群方式"),

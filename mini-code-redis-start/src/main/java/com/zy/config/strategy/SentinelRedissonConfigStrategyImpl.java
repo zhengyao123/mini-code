@@ -1,23 +1,22 @@
-package com.zy.strategy;
+package com.zy.config.strategy;
+
 
 import com.zy.config.RedissonProperties;
 import com.zy.constant.GlobalConstant;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.config.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * date:  2020-07-06 11:28
- *
- * @author zhengyao
+ * @author snowalker
+ * @date 2018/7/12
+ * @desc 哨兵集群方式Redis连接配置
  */
-@Slf4j
 public class SentinelRedissonConfigStrategyImpl implements RedissonConfigStrategy {
-    /**
-     * 哨兵模式
-     * @param redissonProperties
-     * @return
-     */
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SentinelRedissonConfigStrategyImpl.class);
+
     @Override
     public Config createRedissonConfig(RedissonProperties redissonProperties) {
         Config config = new Config();
@@ -38,9 +37,9 @@ public class SentinelRedissonConfigStrategyImpl implements RedissonConfigStrateg
             for (int i = 1; i < addrTokens.length; i++) {
                 config.useSentinelServers().addSentinelAddress(GlobalConstant.REDIS_CONNECTION_PREFIX.getConstant_value() + addrTokens[i]);
             }
-            log.info("初始化[sentinel]方式Config,redisAddress:" + address);
+            LOGGER.info("初始化[sentinel]方式Config,redisAddress:" + address);
         } catch (Exception e) {
-            log.error("sentinel Redisson init error", e);
+            LOGGER.error("sentinel Redisson init error", e);
             e.printStackTrace();
         }
         return config;

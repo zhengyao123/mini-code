@@ -1,17 +1,20 @@
-package com.zy.redis;
+package com.zy;
 
-import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * date:  2020-07-06 14:04
- * 分布式锁实现基于Redisson
- * @author zhengyao
+ * @author snowalker
+ * @date 2018/7/10
+ * @desc 分布式锁实现基于Redisson
  */
-@Slf4j
 public class RedissonLock {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RedissonLock.class);
+
     RedissonManager redissonManager;
 
     public RedissonLock(RedissonManager redissonManager) {
@@ -29,12 +32,12 @@ public class RedissonLock {
         try {
             getLock = rLock.tryLock(0, expireSeconds, TimeUnit.SECONDS);
             if (getLock) {
-                log.info("获取Redisson分布式锁[成功],lockName={}", lockName);
+                LOGGER.info("获取Redisson分布式锁[成功],lockName={}", lockName);
             } else {
-                log.info("获取Redisson分布式锁[失败],lockName={}", lockName);
+                LOGGER.info("获取Redisson分布式锁[失败],lockName={}", lockName);
             }
         } catch (InterruptedException e) {
-            log.error("获取Redisson分布式锁[异常]，lockName=" + lockName, e);
+            LOGGER.error("获取Redisson分布式锁[异常]，lockName=" + lockName, e);
             e.printStackTrace();
             return false;
         }
@@ -56,4 +59,5 @@ public class RedissonLock {
     public void setRedissonManager(RedissonManager redissonManager) {
         this.redissonManager = redissonManager;
     }
+
 }

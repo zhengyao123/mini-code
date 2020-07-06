@@ -1,42 +1,44 @@
-package com.zy.redis;
+package com.zy;
 
 import com.google.common.base.Preconditions;
+
 import com.zy.config.RedissonProperties;
+import com.zy.config.strategy.*;
 import com.zy.constant.RedisConnectionType;
-import com.zy.strategy.*;
-import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
 import org.redisson.config.Config;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * date:  2020-07-06 11:47
- *
- * @author zhengyao
+ * @author snowalker
+ * @date 2018/7/10
  * @desc Redisson核心配置，用于提供初始化的redisson实例
  */
-@Slf4j
 public class RedissonManager {
-    private Config config = null;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Redisson.class);
+
+    private Config config =null;
 
     private Redisson redisson = null;
 
-    public RedissonManager() {
-    }
+    public RedissonManager() {}
 
     public RedissonManager(RedissonProperties redissonProperties) {
         try {
             config = RedissonConfigFactory.getInstance().createConfig(redissonProperties);
             redisson = (Redisson) Redisson.create(config);
         } catch (Exception e) {
-            log.error("Redisson init error", e);
+            LOGGER.error("Redisson init error", e);
             throw new IllegalArgumentException("please input correct configurations," +
-                    "connectionType must in standalone/sentinel/cluster/masterslave");
-        }
+                    "connectionType must in standalone/sentinel/cluster/masterslave");        }
     }
+
     public Redisson getRedisson() {
         return redisson;
     }
+
     /**
      * Redisson连接方式配置工厂
      * 双重检查锁
@@ -57,6 +59,8 @@ public class RedissonManager {
             }
             return factory;
         }
+
+        //private Config config = new Config();
 
         /**
          * 根据连接类型获取对应连接方式的配置,基于策略模式
@@ -85,4 +89,7 @@ public class RedissonManager {
             return redissonConfigContext.createRedissonConfig(redissonProperties);
         }
     }
+
 }
+
+

@@ -1,11 +1,11 @@
 package com.zy.constant;
 
 /**
- * date:  2020-07-06 10:19
+ * @author snowalker
+ * @date 2018/7/12
  * @desc 全局常量枚举
- * @author zhengyao
  */
-public enum  GlobalConstant {
+public enum GlobalConstant {
 
     REDIS_CONNECTION_PREFIX("redis://", "Redis地址配置前缀");
 

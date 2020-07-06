@@ -1,14 +1,12 @@
 package com.zy.config;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * date:  2020-07-06 10:07
- *
- * @author zhengyao
+ * @author snowalker
+ * @date 2018/7/10
+ * @desc Redisson配置映射类
  */
-@Data
 @ConfigurationProperties(prefix = "redisson.lock.server")
 public class RedissonProperties {
 
@@ -20,4 +18,38 @@ public class RedissonProperties {
     private String password;
     /**选取那个数据库*/
     private int database;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public RedissonProperties setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public int getDatabase() {
+        return database;
+    }
+
+    public RedissonProperties setDatabase(int database) {
+        this.database = database;
+        return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
