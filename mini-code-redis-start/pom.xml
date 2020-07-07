@@ -8,10 +8,8 @@
   <artifactId>mini-code-redis-start</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
+  <description>redis lock starter Redission</description>
 
-  <name>mini-code-redis-start</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
