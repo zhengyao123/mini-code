@@ -11,14 +11,6 @@ import java.util.List;
  * <p>
  * 通用分页参数返回
  * </p>
- *
- * @package: com.xkcoding.rbac.security.common
- * @description: 通用分页参数返回
- * @author: yangkai.shen
- * @date: Created in 2018-12-11 20:26
- * @copyright: Copyright (c) 2018
- * @version: V1.0
- * @modified: yangkai.shen
  */
 @Data
 @NoArgsConstructor

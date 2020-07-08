@@ -8,14 +8,6 @@ import java.io.Serializable;
  * <p>
  * 通用的 API 接口封装
  * </p>
- *
- * @package: com.xkcoding.rbac.security.common
- * @description: 通用的 API 接口封装
- * @author: yangkai.shen
- * @date: Created in 2018-12-07 14:55
- * @copyright: Copyright (c) 2018
- * @version: V1.0
- * @modified: yangkai.shen
  */
 @Data
 public class ApiResponse implements Serializable {
