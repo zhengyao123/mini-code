@@ -28,9 +28,9 @@ import java.util.concurrent.TimeUnit;
  *
  * @author zhengyao
  */
+@EnableConfigurationProperties(JwtConfig.class)
 @Configuration
 @Slf4j
-@EnableConfigurationProperties(JwtConfig.class)
 public class JwtUtil {
 
     @Autowired

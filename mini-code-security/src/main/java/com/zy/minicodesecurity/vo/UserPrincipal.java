@@ -1,13 +1,22 @@
 package com.zy.minicodesecurity.vo;
 
+import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.zy.minicodesecurity.common.Consts;
+import com.zy.minicodesecurity.model.Permission;
+import com.zy.minicodesecurity.model.Role;
+import com.zy.minicodesecurity.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * date:  2020-07-07 17:29
@@ -17,7 +26,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserPrincipal {
+public class UserPrincipal implements UserDetails {
     /**
      * 主键
      */
@@ -83,4 +92,52 @@ public class UserPrincipal {
      * 用户权限列表
      */
     private Collection<? extends GrantedAuthority> authorities;
+
+    public static UserPrincipal create(User user, List<Role> roles, List<Permission> permissions) {
+        List<String> roleNames = roles.stream()
+                .map(Role::getName)
+                .collect(Collectors.toList());
+
+        List<GrantedAuthority> authorities = permissions.stream()
+                .filter(permission -> StrUtil.isNotBlank(permission.getPermission()))
+                .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
+                .collect(Collectors.toList());
+
+        return new UserPrincipal(user.getId(), user.getUsername(), user.getPassword(), user.getNickname(), user.getPhone(), user.getEmail(), user.getBirthday(), user.getSex(), user.getStatus(), user.getCreateTime(), user.getUpdateTime(), roleNames, authorities);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return Objects.equals(this.status, Consts.ENABLE);
+    }
 }

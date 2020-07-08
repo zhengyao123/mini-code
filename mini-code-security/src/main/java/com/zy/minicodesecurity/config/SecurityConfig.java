@@ -1,19 +1,22 @@
 package com.zy.minicodesecurity.config;
 
 import com.zy.minicodesecurity.config.ignore.CustomConfig;
+import com.zy.minicodesecurity.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import javax.annotation.Resource;
 
 /**
  * date:  2020-07-07 15:36
@@ -28,29 +31,49 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomConfig customConfig;
 
-    @Resource
-    private AccessDeniedHandler accessDeniedHandler;//异常处理
+    @Autowired
+    private AccessDeniedHandler accessDeniedHandler;
 
     @Autowired
-    private JwtAuthenticationFilter jwtAuthenticationFilter;// // 添加自定义 JWT 过滤器
+    private CustomUserDetailsService customUserDetailsService;
 
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @Bean
+    public BCryptPasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(encoder());
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        // @formatter:off
         http.cors()
-                .and()
                 // 关闭 CSRF
-                .csrf().disable()
+                .and().csrf().disable()
                 // 登录行为由自己实现，参考 AuthController#login
                 .formLogin().disable()
                 .httpBasic().disable()
-                // 允许基于使用HttpServletRequest限制访问
+
+                // 认证请求
                 .authorizeRequests()
                 // 所有请求都需要登录访问
                 .anyRequest()
-                .authenticated()
+                //.authenticated()
                 // RBAC 动态 url 认证
-                .anyRequest()
+                //.anyRequest()
                 .access("@rbacAuthorityService.hasPermission(request,authentication)")
 
                 // 登出行为由自己实现，参考 AuthController#logout
@@ -67,6 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 添加自定义 JWT 过滤器
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
 
     /**
      * 放行所有不需要登录就可以访问的请求，参见 AuthController

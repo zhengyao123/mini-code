@@ -2,10 +2,19 @@ package com.zy.minicodesecurity.config;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.Sets;
+import com.zy.minicodesecurity.common.Status;
 import com.zy.minicodesecurity.config.ignore.CustomConfig;
+import com.zy.minicodesecurity.service.CustomUserDetailsService;
+import com.zy.minicodesecurity.util.JwtUtil;
+import com.zy.minicodesecurity.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -29,15 +38,45 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private CustomConfig customConfig;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //请求是否不需要拦截
-        if (checkIgnore(request)){
+        if (checkIgnore(request)) {
             filterChain.doFilter(request, response);
             return;
         }
 
+        String jwt = jwtUtil.getJwtFromRequest(request);
 
+        if (StrUtil.isNotBlank(jwt)) {
+            //解析jwt,获取用户名
+            String username = jwtUtil.getUsernameFromJWT(jwt);
+            //根据用户名查询
+            UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
+            /**
+             * UsernamePasswordAuthenticationToken继承AbstractAuthenticationToken实现Authentication
+             * 所以当在页面中输入用户名和密码之后首先会进入到UsernamePasswordAuthenticationToken验证(Authentication)，
+             * 然后生成的Authentication会被交由AuthenticationManager来进行管理
+             * 而AuthenticationManager管理一系列的AuthenticationProvider，
+             * 而每一个Provider都会通UserDetailsService和UserDetail来返回一个
+             * 以UsernamePasswordAuthenticationToken实现的带用户名和密码以及权限的Authentication
+             */
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+            SecurityContextHolder.getContext()
+                    .setAuthentication(authentication);
+            filterChain.doFilter(request, response);
+
+        } else {
+            ResponseUtil.renderJson(response, Status.UNAUTHORIZED, null);
+        }
     }
 
     /**
