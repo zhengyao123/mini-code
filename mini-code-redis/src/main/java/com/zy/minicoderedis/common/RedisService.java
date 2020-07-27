@@ -2,6 +2,7 @@ package com.zy.minicoderedis.common;
 
 import com.alibaba.fastjson.JSON;
 import com.zy.minicoderedis.lock.lock.RedisLock;
+import com.zy.minicoderedis.user.TestKey;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -53,25 +54,26 @@ public class RedisService {
 
     /**
      * 尝试获取分布式锁
-     * @return 是否获取成功
      *
+     * @return 是否获取成功
+     * <p>
      * 网上的写法
      * public static Long setnx(String key, String value){
-     *         Jedis jedis = null;
-     *         Long result = null;
-     *         try {
-     *             jedis = RedisPool.getJedis();
-     *             result = jedis.setnx(key, value);
-     *         } catch (Exception e){
-     *             e.printStackTrace();
-     *         } finally {
-     *             if (jedis != null) {
-     *                 jedis.close();
-     *             }
-     *             return result;
-     *         }
-     *     }
-     *     这是有问题的，当redis挂了，会导致死锁
+     * Jedis jedis = null;
+     * Long result = null;
+     * try {
+     * jedis = RedisPool.getJedis();
+     * result = jedis.setnx(key, value);
+     * } catch (Exception e){
+     * e.printStackTrace();
+     * } finally {
+     * if (jedis != null) {
+     * jedis.close();
+     * }
+     * return result;
+     * }
+     * }
+     * 这是有问题的，当redis挂了，会导致死锁
      */
     public Boolean setNx(KeyPrefix prefix, String key) {
         Jedis jedis = null;
@@ -92,6 +94,21 @@ public class RedisService {
         }
     }
 
+    public Boolean setBigMap(KeyPrefix prefix, String key, Long time, Boolean value) {
+        Jedis jedis = null;
+        Boolean result = false;
+        try {
+            jedis = jedisPool.getResource();
+            //生成真正的key
+            String realKey = prefix.getPrefix() + key;
+            result = jedis.setbit(realKey, time, value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
     public Boolean releaseDistributedLock(KeyPrefix prefix, String lockName) {
 
         Jedis jedis = null;
@@ -101,7 +118,7 @@ public class RedisService {
             String realkey = prefix.getPrefix() + lockName;
             //lua脚本
             String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
-            Object result = jedis.eval(script, Collections.singletonList(realkey),Collections.singletonList(lockName));
+            Object result = jedis.eval(script, Collections.singletonList(realkey), Collections.singletonList(lockName));
 
             if (RELEASE_SUCCESS.equals(result)) {
                 return true;
@@ -127,6 +144,20 @@ public class RedisService {
             returnToPool(jedis);
         }
     }
+
+    public Long getbigMap(KeyPrefix prefix, String key, Boolean value) {
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            //生成真正的key
+            String realKey = prefix.getPrefix() + key;
+            return jedis.bitpos(realKey, value);
+        } finally {
+            returnToPool(jedis);
+        }
+
+    }
+
 
     //判断key是否存在
     public <T> boolean exists(KeyPrefix prefix, String key) {
