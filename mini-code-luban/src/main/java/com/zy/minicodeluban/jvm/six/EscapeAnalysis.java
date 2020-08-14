@@ -6,6 +6,7 @@ public class EscapeAnalysis {
 
     public Object instanceObject;
 
+
     //静态变量,外部线程可见,发生逃逸
     public void globalVariableEscape(){
         globalVariableObject = new Object();
