@@ -77,13 +77,14 @@ public class RedisService {
      */
     public Boolean setNx(KeyPrefix prefix, String key) {
         Jedis jedis = null;
+        String result=null;
         try {
             jedis = jedisPool.getResource();
 
             int expireTime = prefix.expireSeconds();
             String realkey = prefix.getPrefix() + key;
 
-            String result = jedis.set(realkey, key, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, expireTime);
+            //String result = jedis.set(realkey, key, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, expireTime);
 
             if (LOCK_SUCCESS.equals(result)) {
                 return true;
