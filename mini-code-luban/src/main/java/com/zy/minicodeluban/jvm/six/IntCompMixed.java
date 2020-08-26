@@ -2,9 +2,10 @@ package com.zy.minicodeluban.jvm.six;
 
 /**
  *
- *  -Xint       9894 ms
- *  -Xcomp      2411 ms
- *  -Xmixed     2638 ms
+ *
+ *  -Xint       5247 ms
+ *  -Xcomp      2564 ms
+ *  -Xmixed     1981 ms
  *
  */
 public class IntCompMixed {
